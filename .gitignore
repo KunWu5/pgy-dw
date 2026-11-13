@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# Spark / Hive 本地元数据（体积大、可重新生成）
+metastore_db/
+derby.log
+spark-warehouse/
+*.crc
+*.crc.meta
+
+# IDE / 系统
+.idea/
+.vscode/
+Thumbs.db
+.DS_Store
+
+# 运行日志
+*.log
+
+# 查询中间结果（每次重跑都会生成）
+spark/output/_q_*/
+spark/output/_export_*/
+output/**/_q_*/
+
+# 二进制 / 可重新生成的产物
+output/*.db
+output/olap/ads_clean.csv
+
+# 运行产物：含真实达人 red_id / 昵称 / 报价，不公开
+# 公开演示用的脱敏版本见 output_public/（python scripts/anonymize_output.py）
+output/
+spark/output/
+airflow/output/

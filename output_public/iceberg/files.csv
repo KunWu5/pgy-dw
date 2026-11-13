@@ -1,0 +1,9 @@
+﻿file_path,record_count,file_size_in_bytes,partition
+file:/C:/Temp/pgy_iceberg_warehouse/pgy/ads_blogger_value/data/stat_month=2026-10/red_id_bucket=4/00000-14-0350b74d-0451-47e2-81e9-5d40e507b422-0-00003.parquet,14,4706,"{2026-10, 4, null}"
+file:/C:/Temp/pgy_iceberg_warehouse/pgy/ads_blogger_value/data/stat_month=2026-10/red_id_bucket=1/00000-14-0350b74d-0451-47e2-81e9-5d40e507b422-0-00001.parquet,16,4486,"{2026-10, 1, null}"
+file:/C:/Temp/pgy_iceberg_warehouse/pgy/ads_blogger_value/data/stat_month=2026-10/red_id_bucket=0/00000-14-0350b74d-0451-47e2-81e9-5d40e507b422-0-00002.parquet,18,4897,"{2026-10, 0, null}"
+file:/C:/Temp/pgy_iceberg_warehouse/pgy/ads_blogger_value/data/stat_month=2026-10/red_id_bucket=5/00000-1-d989ea71-09e2-41f0-b861-c6af754dda02-0-00008.parquet,17,4731,"{2026-10, 5, null}"
+file:/C:/Temp/pgy_iceberg_warehouse/pgy/ads_blogger_value/data/stat_month=2026-10/red_id_bucket=7/00000-1-d989ea71-09e2-41f0-b861-c6af754dda02-0-00006.parquet,15,4734,"{2026-10, 7, null}"
+file:/C:/Temp/pgy_iceberg_warehouse/pgy/ads_blogger_value/data/stat_month=2026-10/red_id_bucket=6/00000-1-d989ea71-09e2-41f0-b861-c6af754dda02-0-00003.parquet,11,4495,"{2026-10, 6, null}"
+file:/C:/Temp/pgy_iceberg_warehouse/pgy/ads_blogger_value/data/stat_month=2026-10/red_id_bucket=3/00000-1-d989ea71-09e2-41f0-b861-c6af754dda02-0-00007.parquet,13,4413,"{2026-10, 3, null}"
+file:/C:/Temp/pgy_iceberg_warehouse/pgy/ads_blogger_value/data/stat_month=2026-10/red_id_bucket=2/00000-1-d989ea71-09e2-41f0-b861-c6af754dda02-0-00004.parquet,18,4995,"{2026-10, 2, null}"

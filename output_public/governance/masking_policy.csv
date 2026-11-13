@@ -1,0 +1,6 @@
+﻿field,level,rule,storage,access
+red_id,PII-标识,对外报表/看板只展示哈希前 8 位或编号,Hive 表明文（内部域）,数据开发 / 投放（内部）
+nickname,PII-标识,对外展示时截断或替换为达人编号,Hive 表明文（内部域）,数据开发 / 投放（内部）
+image_price / video_price,商业敏感,聚合口径对外，明细口径不对外,Hive 表明文（内部域）,投放决策相关角色
+crawled_at / source_file,技术元数据,保留用于血缘与批次追溯,Hive 表明文,数据开发
+登录态 / 凭据,密钥,不入库、不进 Git，走运行时配置,外部配置,采集任务运行时

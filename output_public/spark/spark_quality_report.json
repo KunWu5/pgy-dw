@@ -1,0 +1,98 @@
+[
+  {
+    "check_name": "ODS 到 DWD 行数守恒",
+    "rule": "ODS = DWD 成功 + 失败明细",
+    "actual": 218.0,
+    "expected": 218.0,
+    "passed": 1,
+    "detail": ""
+  },
+  {
+    "check_name": "DWD 主键唯一",
+    "rule": "(stat_month, red_id) 无重复",
+    "actual": 0.0,
+    "expected": 0,
+    "passed": 1,
+    "detail": ""
+  },
+  {
+    "check_name": "关键字段非空",
+    "rule": "red_id / stat_month 不为空",
+    "actual": 0.0,
+    "expected": 0,
+    "passed": 1,
+    "detail": ""
+  },
+  {
+    "check_name": "数值值域",
+    "rule": "粉丝数>0、报价与中位数>=0",
+    "actual": 0.0,
+    "expected": 0,
+    "passed": 1,
+    "detail": ""
+  },
+  {
+    "check_name": "11 项指标完整率",
+    "rule": "非空占比 >= 95%",
+    "actual": 100.0,
+    "expected": ">= 95",
+    "passed": 1,
+    "detail": ""
+  },
+  {
+    "check_name": "2026-08 采集成功率",
+    "rule": ">= 95%",
+    "actual": 100.0,
+    "expected": ">= 95",
+    "passed": 1,
+    "detail": ""
+  },
+  {
+    "check_name": "2026-10 采集成功率",
+    "rule": ">= 95%",
+    "actual": 99.19,
+    "expected": ">= 95",
+    "passed": 1,
+    "detail": ""
+  },
+  {
+    "check_name": "Hive 分区完整性",
+    "rule": "分区数 = 快照月份数",
+    "actual": 2,
+    "expected": 2,
+    "passed": 1,
+    "detail": ""
+  },
+  {
+    "check_name": "Hive Metastore 表数量",
+    "rule": "信息项",
+    "actual": 19,
+    "expected": "信息项",
+    "passed": 1,
+    "detail": ""
+  },
+  {
+    "check_name": "双引擎对账 ads_blogger_value_wide.csv",
+    "rule": "Spark 行数 = SQLite 行数",
+    "actual": 122,
+    "expected": 122,
+    "passed": 1,
+    "detail": ""
+  },
+  {
+    "check_name": "双引擎对账 ads_metric_alert.csv",
+    "rule": "Spark 行数 = SQLite 行数",
+    "actual": 310,
+    "expected": 310,
+    "passed": 1,
+    "detail": ""
+  },
+  {
+    "check_name": "双引擎对账 ads_blogger_churn.csv",
+    "rule": "Spark 行数 = SQLite 行数",
+    "actual": 27,
+    "expected": 27,
+    "passed": 1,
+    "detail": ""
+  }
+]

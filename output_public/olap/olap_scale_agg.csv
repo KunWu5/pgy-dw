@@ -1,0 +1,12 @@
+﻿metric_key,n,avg_v
+exposure_median_30d,120000,228819.39
+exposure_median_90d,120000,686458.17
+fans_count,120000,1852255.27
+image_price,120000,45442.32
+interaction_median_30d,120000,6815.23
+interaction_median_90d,120000,20445.7
+note_count_30d,120000,30.42
+note_count_90d,120000,91.25
+read_median_30d,120000,103525.21
+read_median_90d,120000,310575.63
+video_price,120000,81742.98

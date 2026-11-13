@@ -1,0 +1,4 @@
+﻿run_scope,report,checked_at,total,passed,failed,pass_rate_pct
+SQLite 218 行,output/quality_report.json,2026-11-13T20:26:23,9,9,0,100.0
+Spark 218 行,spark/output/spark_quality_report.json,2026-11-12T22:38:39,12,12,0,100.0
+Spark 132 万行,spark/bench/output/bench_report.json,2026-11-13T13:53:39,6,6,0,100.0

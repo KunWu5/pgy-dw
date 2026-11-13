@@ -1,0 +1,48 @@
+<!doctype html><html lang='zh-CN'><meta charset='utf-8'>
+<title>pgy_dw 表级血缘</title>
+<style>body{font:14px/1.6 -apple-system,'Segoe UI',sans-serif;color:#222;margin:32px auto;max-width:1000px}h1{font-size:20px;font-weight:500}h2{font-size:15px;font-weight:500;margin-top:28px}table{border-collapse:collapse;width:100%;font-size:13px}th,td{border:1px solid #ddd;padding:6px 10px;text-align:left}th{background:#f6f6f4}code{background:#f4f4f1;padding:1px 4px;border-radius:3px}.tag{display:inline-block;padding:1px 8px;border-radius:10px;background:#eef3e8;color:#3b6d11;font-size:12px}</style>
+<h1>pgy_dw 表级血缘</h1>
+<p>由 <code>spark/sql/*.hql</code> 的 CREATE / INSERT 语句与 FROM / JOIN 自动解析，共 <b>24</b> 个节点、<b>28</b> 条依赖边。修改 SQL 后重跑即可更新。</p>
+<svg viewBox='0 0 900 130' width='100%' role='img'>
+<rect x='30' y='30' width='120' height='56' rx='8' fill='#f4f7ef' stroke='#97c459' stroke-width='0.5'/><text x='90' y='53' text-anchor='middle' font-size='13' font-weight='500' fill='#27500A'>ODS</text><text x='90' y='72' text-anchor='middle' font-size='12' fill='#3B6D11'>4 个对象</text>
+<rect x='175' y='30' width='120' height='56' rx='8' fill='#f4f7ef' stroke='#97c459' stroke-width='0.5'/><text x='235' y='53' text-anchor='middle' font-size='13' font-weight='500' fill='#27500A'>STAGING</text><text x='235' y='72' text-anchor='middle' font-size='12' fill='#3B6D11'>4 个对象</text>
+<path d='M150 58 L170 58' fill='none' stroke='#888' stroke-width='1'/><path d='M166 54 L170 58 L166 62' fill='none' stroke='#888' stroke-width='1'/>
+<rect x='320' y='30' width='120' height='56' rx='8' fill='#f4f7ef' stroke='#97c459' stroke-width='0.5'/><text x='380' y='53' text-anchor='middle' font-size='13' font-weight='500' fill='#27500A'>DWD</text><text x='380' y='72' text-anchor='middle' font-size='12' fill='#3B6D11'>5 个对象</text>
+<path d='M295 58 L315 58' fill='none' stroke='#888' stroke-width='1'/><path d='M311 54 L315 58 L311 62' fill='none' stroke='#888' stroke-width='1'/>
+<rect x='465' y='30' width='120' height='56' rx='8' fill='#f4f7ef' stroke='#97c459' stroke-width='0.5'/><text x='525' y='53' text-anchor='middle' font-size='13' font-weight='500' fill='#27500A'>DIM</text><text x='525' y='72' text-anchor='middle' font-size='12' fill='#3B6D11'>4 个对象</text>
+<path d='M440 58 L460 58' fill='none' stroke='#888' stroke-width='1'/><path d='M456 54 L460 58 L456 62' fill='none' stroke='#888' stroke-width='1'/>
+<rect x='610' y='30' width='120' height='56' rx='8' fill='#f4f7ef' stroke='#97c459' stroke-width='0.5'/><text x='670' y='53' text-anchor='middle' font-size='13' font-weight='500' fill='#27500A'>DWS</text><text x='670' y='72' text-anchor='middle' font-size='12' fill='#3B6D11'>4 个对象</text>
+<path d='M585 58 L605 58' fill='none' stroke='#888' stroke-width='1'/><path d='M601 54 L605 58 L601 62' fill='none' stroke='#888' stroke-width='1'/>
+<rect x='755' y='30' width='120' height='56' rx='8' fill='#f4f7ef' stroke='#97c459' stroke-width='0.5'/><text x='815' y='53' text-anchor='middle' font-size='13' font-weight='500' fill='#27500A'>ADS</text><text x='815' y='72' text-anchor='middle' font-size='12' fill='#3B6D11'>3 个对象</text>
+<path d='M730 58 L750 58' fill='none' stroke='#888' stroke-width='1'/><path d='M746 54 L750 58 L746 62' fill='none' stroke='#888' stroke-width='1'/>
+</svg>
+<h2>目标表 ← 来源表</h2>
+<table><tr><th>目标表</th><th>层</th><th>来源表</th><th>阶段</th></tr>
+<tr><td><code>pgy_dw.ads_blogger_value_wide</code></td><td><span class='tag'>ADS</span></td><td><code>pgy_dw.dwd_blogger_monthly_snapshot</code>, <code>pgy_dw.dws_metric_monthly_change</code></td><td>ads</td></tr>
+<tr><td><code>pgy_dw.ads_metric_alert</code></td><td><span class='tag'>ADS</span></td><td><code>pgy_dw.dim_metric</code>, <code>pgy_dw.dws_metric_monthly_change</code></td><td>ads</td></tr>
+<tr><td><code>pgy_dw.ads_tag_profile</code></td><td><span class='tag'>ADS</span></td><td><code>pgy_dw.dwd_blogger_monthly_snapshot</code>, <code>pgy_dw.dwd_blogger_tag_bridge</code>, <code>pgy_dw.dws_blogger_profile</code></td><td>profile</td></tr>
+<tr><td><code>pgy_dw.dim_blogger</code></td><td><span class='tag'>DIM</span></td><td><code>pgy_dw.ods_blogger_list</code>, <code>pgy_dw.ods_pgy_monthly_snapshot</code></td><td>dim_dwd</td></tr>
+<tr><td><code>pgy_dw.dim_blogger_scd</code></td><td><span class='tag'>DIM</span></td><td><code>pgy_dw.dwd_blogger_monthly_snapshot</code></td><td>dim_dwd</td></tr>
+<tr><td><code>pgy_dw.dim_month</code></td><td><span class='tag'>DIM</span></td><td><code>pgy_dw.ods_pgy_monthly_snapshot</code></td><td>dim_dwd</td></tr>
+<tr><td><code>pgy_dw.dwd_blogger_metric_long</code></td><td><span class='tag'>DWD</span></td><td><code>pgy_dw.dwd_blogger_monthly_snapshot</code></td><td>dws</td></tr>
+<tr><td><code>pgy_dw.dwd_blogger_monthly_snapshot</code></td><td><span class='tag'>DWD</span></td><td><code>pgy_dw.ods_pgy_monthly_snapshot</code></td><td>dim_dwd</td></tr>
+<tr><td><code>pgy_dw.dwd_blogger_tag_bridge</code></td><td><span class='tag'>DWD</span></td><td><code>pgy_dw.dwd_blogger_monthly_snapshot</code></td><td>dim_dwd</td></tr>
+<tr><td><code>pgy_dw.dwd_crawl_run</code></td><td><span class='tag'>DWD</span></td><td><code>pgy_dw.ods_pgy_monthly_snapshot</code></td><td>dim_dwd</td></tr>
+<tr><td><code>pgy_dw.dwd_failed_record</code></td><td><span class='tag'>DWD</span></td><td><code>pgy_dw.ods_pgy_monthly_snapshot</code></td><td>dim_dwd</td></tr>
+<tr><td><code>pgy_dw.dws_blogger_profile</code></td><td><span class='tag'>DWS</span></td><td><code>pgy_dw.ads_blogger_value_wide</code>, <code>pgy_dw.dim_blogger</code>, <code>pgy_dw.dwd_blogger_monthly_snapshot</code>, <code>pgy_dw.dwd_blogger_tag_bridge</code></td><td>profile</td></tr>
+<tr><td><code>pgy_dw.dws_metric_monthly_change</code></td><td><span class='tag'>DWS</span></td><td><code>pgy_dw.dwd_blogger_metric_long</code></td><td>dws</td></tr>
+<tr><td><code>pgy_dw.dws_platform_monthly</code></td><td><span class='tag'>DWS</span></td><td><code>pgy_dw.dwd_blogger_monthly_snapshot</code></td><td>dws</td></tr>
+<tr><td><code>pgy_dw.dws_tag_monthly</code></td><td><span class='tag'>DWS</span></td><td><code>pgy_dw.dwd_blogger_monthly_snapshot</code>, <code>pgy_dw.dwd_blogger_tag_bridge</code></td><td>dws</td></tr>
+<tr><td><code>pgy_dw.ods_blogger_list</code></td><td><span class='tag'>ODS</span></td><td><code>v_blogger_list</code></td><td>ods</td></tr>
+<tr><td><code>pgy_dw.ods_crawl_run</code></td><td><span class='tag'>ODS</span></td><td><code>v_crawl_run</code></td><td>ods</td></tr>
+<tr><td><code>pgy_dw.ods_mysql_snapshot</code></td><td><span class='tag'>ODS</span></td><td><code>v_mysql_snapshot</code></td><td>ods</td></tr>
+<tr><td><code>pgy_dw.ods_pgy_monthly_snapshot</code></td><td><span class='tag'>ODS</span></td><td><code>v_ods_snapshot</code></td><td>ods</td></tr>
+</table>
+<h2>Airflow 任务依赖</h2><table><tr><th>任务</th><th>上游</th></tr>
+<tr><td><code>ods</code></td><td>（无）</td></tr>
+<tr><td><code>dim_dwd</code></td><td>ods</td></tr>
+<tr><td><code>dws</code></td><td>dim_dwd</td></tr>
+<tr><td><code>ads</code></td><td>dws</td></tr>
+<tr><td><code>quality</code></td><td>ads</td></tr>
+</table>
+</html>

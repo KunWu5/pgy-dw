@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<title>pgy_dw 数据平台架构图</title>
+<style>
+  body {
+    margin: 0; padding: 32px 40px; width: 1200px; background: #fff; color: #1f2328;
+    font: 13px/1.5 "Segoe UI", -apple-system, "Microsoft YaHei", sans-serif;
+  }
+  h1 { font-size: 19px; font-weight: 600; margin: 0 0 4px; }
+  .sub { color: #6b7280; font-size: 12px; margin-bottom: 22px; }
+  .row { display: flex; align-items: stretch; gap: 0; margin-bottom: 14px; }
+  .box {
+    flex: 1; border: 1px solid #d8dde3; border-radius: 8px; padding: 10px 12px;
+    background: #fff; min-width: 0;
+  }
+  .box .t { font-weight: 600; font-size: 13px; margin-bottom: 2px; }
+  .box .m { color: #6b7280; font-size: 11px; line-height: 1.45; }
+  .arrow {
+    width: 26px; display: flex; align-items: center; justify-content: center;
+    color: #9aa4af; font-size: 16px; flex: 0 0 26px;
+  }
+  .ods { border-left: 3px solid #8fb8de; }
+  .dwd { border-left: 3px solid #6ba368; }
+  .dws { border-left: 3px solid #d2a24c; }
+  .ads { border-left: 3px solid #c07a5e; }
+  .src { border-left: 3px solid #9aa4af; }
+  .label {
+    font-size: 11px; color: #6b7280; letter-spacing: .04em; text-transform: uppercase;
+    margin: 18px 0 6px;
+  }
+  .consume { display: flex; gap: 10px; }
+  .consume .box { flex: 1; background: #fafbfc; }
+  .bars { display: flex; gap: 10px; margin-top: 14px; }
+  .bar {
+    flex: 1; border: 1px dashed #c9d1d9; border-radius: 8px; padding: 9px 12px;
+    background: #fcfcfd;
+  }
+  .bar .t { font-weight: 600; font-size: 12px; }
+  .bar .m { color: #6b7280; font-size: 11px; }
+  .foot { margin-top: 16px; color: #9aa4af; font-size: 11px; }
+</style>
+<h1>pgy_dw 数据平台架构</h1>
+<div class="sub">离线分层数仓 + 数据治理 + 画像 / BI + 实时管道 + 湖格式 ｜ 单机 Windows 可完整复现</div>
+
+<div class="label">主链路 · 离线批处理</div>
+<div class="row">
+  <div class="box src">
+    <div class="t">采集系统</div>
+    <div class="m">Playwright + MySQL<br>16 个历史批次<br>123 位达人</div>
+  </div>
+  <div class="arrow">→</div>
+  <div class="box ods">
+    <div class="t">ODS 接入层 · 4 表</div>
+    <div class="m">原样接入，全 STRING<br>218 行快照 / 123 名单<br>字段用 COLUMN_MAP 标准化</div>
+  </div>
+  <div class="arrow">→</div>
+  <div class="box dwd">
+    <div class="t">DWD / DIM · 8 表</div>
+    <div class="m">217 明细 + 1 失败隔离<br>SCD2 拉链 204 版本<br>标签桥接 2,202 行</div>
+  </div>
+  <div class="arrow">→</div>
+  <div class="box dws">
+    <div class="t">DWS 汇总层 · 3 表</div>
+    <div class="m">2,387 指标长表<br>LAG 环比 + 30% 阈值<br>标签月度汇总 480</div>
+  </div>
+  <div class="arrow">→</div>
+  <div class="box ads">
+    <div class="t">ADS 应用层 · 3 表</div>
+    <div class="m">122 价值宽表<br>310 异动清单<br>27 名单增删</div>
+  </div>
+</div>
+
+<div class="label">消费与分析</div>
+<div class="consume">
+  <div class="box">
+    <div class="t">BI 看板</div>
+    <div class="m">离线 HTML · 零依赖<br>KPI / 分层 / 异动 / TOP</div>
+  </div>
+  <div class="box">
+    <div class="t">标签画像</div>
+    <div class="m">122 达人 × 21 列<br>85 标签 · 价值分段</div>
+  </div>
+  <div class="box">
+    <div class="t">OLAP 查询</div>
+    <div class="m">DuckDB 列存<br>132 万行聚合 20.5 ms</div>
+  </div>
+  <div class="box">
+    <div class="t">Iceberg 湖表</div>
+    <div class="m">MERGE / 时间旅行<br>重写 48/122 行</div>
+  </div>
+</div>
+
+<div class="label">实时链路 · 微批</div>
+<div class="row">
+  <div class="box src">
+    <div class="t">文件流</div>
+    <div class="m">采集端持续落盘<br>1,000 行增量</div>
+  </div>
+  <div class="arrow">→</div>
+  <div class="box">
+    <div class="t">清洗 + 分流</div>
+    <div class="m">脏数据识别<br>有效 / 死信两路</div>
+  </div>
+  <div class="arrow">→</div>
+  <div class="box">
+    <div class="t">水位线窗口聚合</div>
+    <div class="m">1 分钟水位线<br>10 秒滚动窗口</div>
+  </div>
+  <div class="arrow">→</div>
+  <div class="box">
+    <div class="t">Sink</div>
+    <div class="m">窗口结果 392 行<br>死信 70 行 · 流表 1,100 行</div>
+  </div>
+</div>
+
+<div class="bars">
+  <div class="bar">
+    <div class="t">数据治理</div>
+    <div class="m">53 条字典 · 24 节点血缘 · 安全分级</div>
+  </div>
+  <div class="bar">
+    <div class="t">调度</div>
+    <div class="m">Airflow 5 任务 · 依赖 / 重试 / 补数</div>
+  </div>
+  <div class="bar">
+    <div class="t">质量</div>
+    <div class="m">27 条规则 · 3 次运行 100% · 双引擎对账</div>
+  </div>
+</div>
+
+<div class="foot">数据：218 行真实快照 + 132 万行合成压测（独立库，互不影响）｜ Spark 4.0.1 · Hive Metastore · Parquet · Airflow 3.1 · Iceberg 1.12 · DuckDB 2.0</div>
+</html>

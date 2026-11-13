@@ -1,0 +1,13 @@
+{
+  "synthetic": true,
+  "seed": 20261113,
+  "bloggers": 5000,
+  "months": 24,
+  "metrics_per_row": 11,
+  "fact_rows": 120000,
+  "metric_long_rows_expected": 1320000,
+  "dim_rows": 5000,
+  "fact_csv": "C:\\Temp\\pgy_bench_staging\\bench_fact.csv",
+  "dim_csv": "C:\\Temp\\pgy_bench_staging\\bench_dim.csv",
+  "fact_csv_bytes": 21527964
+}

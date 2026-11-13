@@ -1,0 +1,23 @@
+services:
+  airflow:
+    build: .
+    environment:
+      AIRFLOW__CORE__EXECUTOR: SequentialExecutor
+      AIRFLOW__CORE__LOAD_EXAMPLES: "False"
+      AIRFLOW__CORE__DAGS_FOLDER: /opt/airflow/dags
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: sqlite:////opt/airflow/airflow.db
+      PGY_PROJECT_ROOT: /opt/airflow/project
+      PGY_SOURCE_DIR: /opt/airflow/pgy_source
+      PGY_SPARK_WAREHOUSE: /opt/airflow/pgy_spark_warehouse
+      JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ../:/opt/airflow/project
+      - ${PGY_SOURCE_DIR}:/opt/airflow/pgy_source:ro
+    working_dir: /opt/airflow/project
+    ports:
+      - "8080:8080"
+    command: >
+      bash -lc "airflow db migrate &&
+                airflow dags test pgy_dw_monthly 2026-11-12 &&
+                airflow standalone"

@@ -1,0 +1,230 @@
+{
+  "timestamp": "2026-11-13T13:48:24",
+  "environment": {
+    "master": "local[4]",
+    "spark_version": "4.0.1",
+    "python": "3.13.14",
+    "adaptive_enabled": false,
+    "warehouse": "C:\\Temp\\pgy_spark_warehouse"
+  },
+  "manifest": {
+    "synthetic": true,
+    "seed": 20261113,
+    "bloggers": 5000,
+    "months": 24,
+    "metrics_per_row": 11,
+    "fact_rows": 120000,
+    "metric_long_rows_expected": 1320000,
+    "dim_rows": 5000,
+    "fact_csv": "C:\\Temp\\pgy_bench_staging\\bench_fact.csv",
+    "dim_csv": "C:\\Temp\\pgy_bench_staging\\bench_dim.csv",
+    "fact_csv_bytes": 21527964
+  },
+  "tables": {
+    "database": "pgy_dw_bench",
+    "partitions": 24,
+    "tables": 9,
+    "row_counts": {
+      "dwd_blogger_monthly_snapshot": 120000,
+      "dim_blogger": 5000,
+      "dwd_blogger_tag_bridge": 241416,
+      "dwd_blogger_metric_long": 1320000,
+      "dws_metric_monthly_change": 1320000,
+      "dws_platform_monthly": 24,
+      "dws_tag_monthly": 480
+    },
+    "fact_parquet_files": 96,
+    "fact_parquet_bytes": 11285559,
+    "fact_parquet_mb": 10.76,
+    "fact_partition_dir": "C:\\Temp\\pgy_spark_warehouse\\pgy_dw_bench.db\\dwd_blogger_monthly_snapshot"
+  },
+  "partition_pruning": {
+    "filter_month": "2025-01",
+    "files_scanned_all": 96,
+    "files_scanned_filtered": 4,
+    "bytes_scanned_all": 11285559,
+    "bytes_scanned_filtered": 471907,
+    "bytes_mb_all": 10.76,
+    "bytes_mb_filtered": 0.45,
+    "timing_all": {
+      "case": "全表扫描（24 个分区）",
+      "runs_s": [
+        0.238,
+        0.217,
+        0.286
+      ],
+      "best_s": 0.217,
+      "median_s": 0.238
+    },
+    "timing_filtered": {
+      "case": "单分区过滤（1 个分区）",
+      "runs_s": [
+        0.197,
+        0.175,
+        0.18
+      ],
+      "best_s": 0.175,
+      "median_s": 0.18
+    },
+    "speedup_x": 1.24,
+    "partition_filters_in_plan": [
+      "PartitionFilters: [isnotnull(stat_month#57), (stat_month#57 = 2025-01)]\r"
+    ],
+    "plan_filtered_excerpt": "PartitionFilters: [isnotnull(stat_month#57), (stat_month#57 = 2025-01)]"
+  },
+  "broadcast_join": {
+    "joined_rows_metric_long": 1320000,
+    "dim_rows": 5000,
+    "sort_merge": {
+      "case": "SortMergeJoin（禁用自动广播）",
+      "runs_s": [
+        1.073,
+        1.033
+      ],
+      "best_s": 1.033,
+      "median_s": 1.053
+    },
+    "broadcast": {
+      "case": "BroadcastHashJoin（显式广播 5,000 行维表）",
+      "runs_s": [
+        0.407,
+        0.454
+      ],
+      "best_s": 0.407,
+      "median_s": 0.43
+    },
+    "speedup_x": 2.54,
+    "smj_plan_has_sortmerge": true,
+    "brd_plan_has_broadcast": true,
+    "plan_smj_excerpt": "+- * SortMergeJoin Inner (11)\n(11) SortMergeJoin [codegen id : 5]\nJoin type: Inner\nJoin condition: None",
+    "plan_brd_excerpt": "+- * BroadcastHashJoin Inner BuildRight (8)\n(8) BroadcastHashJoin [codegen id : 2]\nJoin type: Inner\nJoin condition: None"
+  },
+  "shuffle_partitions": {
+    "query": "SELECT red_id, metric_key, COUNT(*) AS n, ROUND(AVG(metric_value), 2) AS avg_v FROM pgy_dw_bench.dwd_blogger_metric_long GROUP BY red_id, metric_key",
+    "master": "local[4]",
+    "cases": [
+      {
+        "case": "shuffle.partitions=1",
+        "runs_s": [
+          0.254,
+          0.283
+        ],
+        "best_s": 0.254,
+        "median_s": 0.268,
+        "partitions": 1
+      },
+      {
+        "case": "shuffle.partitions=4",
+        "runs_s": [
+          0.291,
+          0.289
+        ],
+        "best_s": 0.289,
+        "median_s": 0.29,
+        "partitions": 4
+      },
+      {
+        "case": "shuffle.partitions=16",
+        "runs_s": [
+          0.423,
+          0.375
+        ],
+        "best_s": 0.375,
+        "median_s": 0.399,
+        "partitions": 16
+      },
+      {
+        "case": "shuffle.partitions=64",
+        "runs_s": [
+          0.756,
+          0.748
+        ],
+        "best_s": 0.748,
+        "median_s": 0.752,
+        "partitions": 64
+      }
+    ],
+    "best_partitions": 1,
+    "best_s": 0.254,
+    "worst_partitions": 64,
+    "worst_s": 0.748,
+    "degradation_worst_vs_best_x": 2.94,
+    "aqe_enabled": false
+  },
+  "dataframe_api": {
+    "dataframe_api_table": "pgy_dw_bench.dws_tag_monthly_df",
+    "window_table": "pgy_dw_bench.dws_tag_rank_df",
+    "rows_sql": 480,
+    "rows_dataframe": 480,
+    "except_all_sql_minus_df": 0,
+    "except_all_df_minus_sql": 0,
+    "checksums": {
+      "sql": {
+        "n": "480",
+        "sum_cnt": "241416",
+        "sum_fans": "8.85092067E8",
+        "sum_price": "2.182050029E7"
+      },
+      "dataframe": {
+        "n": "480",
+        "sum_cnt": "241416",
+        "sum_fans": "8.85092067E8",
+        "sum_price": "2.182050029E7"
+      }
+    },
+    "exact_match": true,
+    "uses_broadcast": true,
+    "uses_window": true,
+    "plan_tag_monthly": "*(4) HashAggregate(keys=[stat_month#71, tag#73], functions=[avg(fans_count#40L), avg(image_price#41), avg(cpe_30d#51), count(distinct red_id#72)], output=[stat_month#71, tag#73, blogger_cnt#447L, avg_fans#448, avg_image_price#449, avg_cpe_30d#450])\n+- Exchange hashpartitioning(stat_month#71, tag#73, 16), ENSURE_REQUIREMENTS, [plan_id=2799]\n   +- *(3) HashAggregate(keys=[stat_month#71, tag#73], functions=[merge_avg(fans_count#40L), merge_avg(image_price#41), merge_avg(cpe_30d#51), partial_count(distinct red_id#72)], output=[stat_month#71, tag#73, sum#463, count#464L, sum#467, count#468L, sum#471, count#472L, count#475L])\n      +- *(3) HashAggregate(keys=[stat_month#71, tag#73, red_id#72], functions=[merge_avg(fans_count#40L), merge_avg(image_price#41), merge_avg(cpe_30d#51)], output=[stat_month#71, tag#73, red_id#72, sum#463, count#464L, sum#467, count#468L, sum#471, count#472L])\n         +- Exchange hashpartitioning(stat_month#71, tag#73, red_id#72, 16), ENSURE_REQUIREMENTS, [plan_id=2794]\n            +- *(2) HashAggregate(keys=[stat_month#71, tag#73, red_id#72], functions=[partial_avg(fans_count#40L), partial_avg(image_price#41), partial_avg(cpe_30d#51)], output=[stat_month#71, tag#73, red_id#72, sum#463, count#464L, sum#467, count#468L, sum#471, count#472L])\n               +- *(2) Project [stat_month#71, red_id#72, tag#73, fans_count#40L, image_price#41, cpe_30d#51]\n                  +- *(2) BroadcastHashJoin [stat_month#71, red_id#72], [stat_month#57, red_id#37], Inner, BuildRight, false\n                     :- *(2) Filter (isnotnull(stat_month#71) AND isnotnull(red_id#72))\n                     :  +- *(2) ColumnarToRow\n                     :     +- FileScan parquet spark_catalog.pgy_dw_bench.dwd_blogger_tag_bridge[stat_month#71,red_id#72,tag#73] Batched: true, DataFilters: [isnotnull(stat_month#71), isnotnull(red_id#72)], Format: Parquet, Location: InMemoryFileIndex(1 paths)[file:/C:/Temp/pgy_spark_warehouse/pgy_dw_bench.db/dwd_blogger_tag_bridge], PartitionFilters: [], PushedFilters: [IsNotNull(stat_month), IsNotNull(red_id)], ReadSchema: struct<stat_month:string,red_id:string,tag:string>\n                     +- BroadcastExchange HashedRelationBroadcastMode(List(input[4, string, true], input[0, string, false]),false), [plan_id=2788]\n                        +- *(1) Filter isnotnull(red_id#37)\n                           +- *(1) ColumnarToRow\n                              +- FileScan parquet spark_catalog.pgy_dw_bench.dwd_blogger_monthly_snapshot[red_id#37,fans_count#40L,image_price#41,cpe_30d#51,stat_month#57] Batched: true, DataFilters: [isnotnull(red_id#37)], Format: Parquet, Location: InMemoryFileIndex(24 paths)[file:/C:/Temp/pgy_spark_warehouse/pgy_dw_bench.db/dwd_blogger_monthly..., PartitionFilters: [isnotnull(stat_month#57)], PushedFilters: [IsNotNull(red_id)], ReadSchema: struct<red_id:string,fans_count:bigint,image_price:double,cpe_30d:double>\n",
+    "plan_tag_rank": "Window [row_number() windowspecdefinition(stat_month#71, blogger_cnt#447L DESC NULLS LAST, tag#73 ASC NULLS FIRST, specifiedwindowframe(RowFrame, unboundedpreceding$(), currentrow$())) AS tag_rank#547], [stat_month#71], [blogger_cnt#447L DESC NULLS LAST, tag#73 ASC NULLS FIRST]\n+- *(5) Sort [stat_month#71 ASC NULLS FIRST, blogger_cnt#447L DESC NULLS LAST, tag#73 ASC NULLS FIRST], false, 0\n   +- Exchange hashpartitioning(stat_month#71, 16), ENSURE_REQUIREMENTS, [plan_id=3071]\n      +- *(4) HashAggregate(keys=[stat_month#71, tag#73], functions=[avg(fans_count#40L), avg(image_price#41), avg(cpe_30d#51), count(distinct red_id#72)], output=[stat_month#71, tag#73, blogger_cnt#447L, avg_fans#448, avg_image_price#449, avg_cpe_30d#450])\n         +- Exchange hashpartitioning(stat_month#71, tag#73, 16), ENSURE_REQUIREMENTS, [plan_id=3067]\n            +- *(3) HashAggregate(keys=[stat_month#71, tag#73], functions=[merge_avg(fans_count#40L), merge_avg(image_price#41), merge_avg(cpe_30d#51), partial_count(distinct red_id#72)], output=[stat_month#71, tag#73, sum#463, count#464L, sum#467, count#468L, sum#471, count#472L, count#475L])\n               +- *(3) HashAggregate(keys=[stat_month#71, tag#73, red_id#72], functions=[merge_avg(fans_count#40L), merge_avg(image_price#41), merge_avg(cpe_30d#51)], output=[stat_month#71, tag#73, red_id#72, sum#463, count#464L, sum#467, count#468L, sum#471, count#472L])\n                  +- Exchange hashpartitioning(stat_month#71, tag#73, red_id#72, 16), ENSURE_REQUIREMENTS, [plan_id=3062]\n                     +- *(2) HashAggregate(keys=[stat_month#71, tag#73, red_id#72], functions=[partial_avg(fans_count#40L), partial_avg(image_price#41), partial_avg(cpe_30d#51)], output=[stat_month#71, tag#73, red_id#72, sum#463, count#464L, sum#467, count#468L, sum#471, count#472L])\n                        +- *(2) Project [stat_month#71, red_id#72, tag#73, fans_count#40L, image_price#41, cpe_30d#51]\n                           +- *(2) BroadcastHashJoin [stat_month#71, red_id#72], [stat_month#57, red_id#37], Inner, BuildRight, false\n                              :- *(2) Filter (isnotnull(stat_month#71) AND isnotnull(red_id#72))\n                              :  +- *(2) ColumnarToRow\n                              :     +- FileScan parquet spark_catalog.pgy_dw_bench.dwd_blogger_tag_bridge[stat_month#71,red_id#72,tag#73] Batched: true, DataFilters: [isnotnull(stat_month#71), isnotnull(red_id#72)], Format: Parquet, Location: InMemoryFileIndex(1 paths)[file:/C:/Temp/pgy_spark_warehouse/pgy_dw_bench.db/dwd_blogger_tag_bridge], PartitionFilters: [], PushedFilters: [IsNotNull(stat_month), IsNotNull(red_id)], ReadSchema: struct<stat_month:string,red_id:string,tag:string>\n                              +- BroadcastExchange HashedRelationBroadcastMode(List(input[4, string, true], input[0, string, false]),false), [plan_id=3056]\n                                 +- *(1) Filter isnotnull(red_id#37)\n                                    +- *(1) ColumnarToRow\n                                       +- FileScan parquet spark_catalog.pgy_dw_bench.dwd_blogger_monthly_snapshot[red_id#37,fans_count#40L,image_price#41,cpe_30d#51,stat_month#57] Batched: true, DataFilters: [isnotnull(red_id#37)], Format: Parquet, Location: InMemoryFileIndex(24 paths)[file:/C:/Temp/pgy_spark_warehouse/pgy_dw_bench.db/dwd_blogger_monthly..., PartitionFilters: [isnotnull(stat_month#57)], PushedFilters: [IsNotNull(red_id)], ReadSchema: struct<red_id:string,fans_count:bigint,image_price:double,cpe_30d:double>\n"
+  },
+  "quality_at_scale": {
+    "checks": [
+      {
+        "name": "指标长表行数守恒",
+        "rule": "事实表 × 11 项指标",
+        "expected": 1320000.0,
+        "actual": 1320000.0,
+        "passed": true
+      },
+      {
+        "name": "DWD 主键唯一",
+        "rule": "(stat_month, red_id) 无重复",
+        "expected": 0,
+        "actual": 0.0,
+        "passed": true
+      },
+      {
+        "name": "关键字段非空",
+        "rule": "red_id / stat_month 不为空",
+        "expected": 0,
+        "actual": 0.0,
+        "passed": true
+      },
+      {
+        "name": "数值值域",
+        "rule": "粉丝数>0、报价与中位数>=0",
+        "expected": 0,
+        "actual": 0.0,
+        "passed": true
+      },
+      {
+        "name": "11 项指标完整率",
+        "rule": "metric_value 无空值",
+        "expected": 0,
+        "actual": 0.0,
+        "passed": true
+      },
+      {
+        "name": "Hive 分区完整性",
+        "rule": "分区数 = 24",
+        "expected": 24,
+        "actual": 24,
+        "passed": true
+      }
+    ],
+    "passed": 6,
+    "total": 6,
+    "all_passed": true
+  }
+}

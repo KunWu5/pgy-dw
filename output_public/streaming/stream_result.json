@@ -1,0 +1,14 @@
+{
+  "mode": "Spark Structured Streaming（微批，2s 触发）",
+  "source": "文件流 C:\\Temp\\pgy_stream_in",
+  "windows": "10 秒滚动窗口 + 1 分钟水位线",
+  "window_rows": 392,
+  "dead_letter_rows": 70,
+  "rate_stream_rows": 1100,
+  "exported": {
+    "stream_tag_window.csv": 392,
+    "stream_dead_letter.csv": 70
+  },
+  "checkpoint": "C:\\Temp\\pgy_stream_ckpt",
+  "sink": "C:\\Temp\\pgy_stream_sink"
+}

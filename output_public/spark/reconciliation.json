@@ -1,0 +1,17 @@
+{
+  "ads_blogger_value_wide.csv": {
+    "spark": 122,
+    "sqlite": 122,
+    "match": true
+  },
+  "ads_metric_alert.csv": {
+    "spark": 310,
+    "sqlite": 310,
+    "match": true
+  },
+  "ads_blogger_churn.csv": {
+    "spark": 27,
+    "sqlite": 27,
+    "match": true
+  }
+}

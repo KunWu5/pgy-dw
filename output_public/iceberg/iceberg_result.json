@@ -1,0 +1,62 @@
+{
+  "table": "lake.pgy.ads_blogger_value",
+  "rows": 122,
+  "insert_seconds": 2.98,
+  "merge_seconds": 2.78,
+  "snapshots": 2,
+  "snapshot_detail": [
+    {
+      "snapshot_id": "106794598419492420",
+      "committed_at": "2026-11-13T15:20:31.911+08:00",
+      "operation": "append",
+      "added_records": "122",
+      "deleted_records": "",
+      "added_files": "8",
+      "deleted_files": ""
+    },
+    {
+      "snapshot_id": "1198050979149091838",
+      "committed_at": "2026-11-13T15:20:35.706+08:00",
+      "operation": "overwrite",
+      "added_records": "48",
+      "deleted_records": "48",
+      "added_files": "3",
+      "deleted_files": "3"
+    }
+  ],
+  "merge_snapshot": {
+    "snapshot_id": "1198050979149091838",
+    "committed_at": "2026-11-13T15:20:35.706+08:00",
+    "operation": "overwrite",
+    "added_records": "48",
+    "deleted_records": "48",
+    "added_files": "3",
+    "deleted_files": "3"
+  },
+  "time_travel": [
+    {
+      "version": "v1(建表时)",
+      "n": "122",
+      "total_fans": "6779574",
+      "reviewed": "0"
+    },
+    {
+      "version": "v_now(当前)",
+      "n": "122",
+      "total_fans": "6779574",
+      "reviewed": "3"
+    }
+  ],
+  "schema_evolution": {
+    "added": true,
+    "null_after_add": 122.0
+  },
+  "partition_evolution": {
+    "added": true,
+    "spec_rows": 8
+  },
+  "data_files": 8,
+  "hive_overwrite_seconds": 0.41,
+  "hive_rows_written": 122,
+  "iceberg_jar": "iceberg-spark-runtime-4.0_2.13-1.12.0.jar"
+}

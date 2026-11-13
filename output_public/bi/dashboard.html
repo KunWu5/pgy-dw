@@ -1,0 +1,42 @@
+<!doctype html><html lang='zh-CN'><meta charset='utf-8'><title>蒲公英达人数据看板</title>
+<style>body{font:14px/1.6 -apple-system,'Segoe UI',sans-serif;color:#222;margin:28px auto;max-width:1080px;background:#fff}h1{font-size:21px;font-weight:500;margin:0 0 4px}h2{font-size:15px;font-weight:500;margin:28px 0 10px}.sub{color:#777;font-size:13px}.cards{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}.card{flex:1 1 150px;background:#f6f7f4;border-radius:10px;padding:14px}.card .lbl{font-size:12px;color:#666}.card .val{font-size:24px;font-weight:500;margin-top:4px}table{border-collapse:collapse;width:100%;font-size:13px}th,td{border-bottom:1px solid #e6e6e2;padding:6px 8px;text-align:left}th{background:#f6f7f4;font-weight:500}.grid{display:flex;gap:24px;flex-wrap:wrap}.grid>div{flex:1 1 420px}.muted{color:#888;font-size:13px}a{color:#185fa5}</style>
+<h1>小红书蒲公英达人 · 离线数仓看板</h1>
+<div class='sub'>数据源：ODS→DWD→DWS→ADS 分层结果（2026-10）｜离线生成，无外部依赖｜<a href='../governance/dq_monitor.html'>质量监控</a> · <a href='../governance/lineage.html'>表级血缘</a></div>
+<div class='cards'>
+<div class='card'><div class='lbl'>本月达人</div><div class='val'>122</div></div>
+<div class='card'><div class='lbl'>指标异动</div><div class='val'>310</div></div>
+<div class='card'><div class='lbl'>名单增删</div><div class='val'>27</div></div>
+<div class='card'><div class='lbl'>画像标签数</div><div class='val'>85</div></div>
+<div class='card'><div class='lbl'>质量通过率</div><div class='val'>100%</div></div>
+</div>
+<div class='grid'>
+<div><h2>达人分层分布</h2><svg viewBox='0 0 620 60' width='100%' role='img'><text x='0' y='18' font-size='12' fill='#444'>尾部</text><rect x='180' y='8' width='330' height='12' rx='3' fill='#639922'/><text x='520' y='18' font-size='12' fill='#222'>116</text><text x='0' y='44' font-size='12' fill='#444'>腰部</text><rect x='180' y='34' width='17' height='12' rx='3' fill='#639922'/><text x='207' y='44' font-size='12' fill='#222'>6</text></svg></div>
+<div><h2>价值画像分段</h2><svg viewBox='0 0 620 86' width='100%' role='img'><text x='0' y='18' font-size='12' fill='#444'>待观察</text><rect x='180' y='8' width='182' height='12' rx='3' fill='#378ADD'/><text x='372' y='18' font-size='12' fill='#222'>36</text><text x='0' y='44' font-size='12' fill='#444'>潜力</text><rect x='180' y='34' width='330' height='12' rx='3' fill='#378ADD'/><text x='520' y='44' font-size='12' fill='#222'>65</text><text x='0' y='70' font-size='12' fill='#444'>高价值</text><rect x='180' y='60' width='106' height='12' rx='3' fill='#378ADD'/><text x='296' y='70' font-size='12' fill='#222'>21</text></svg></div>
+</div>
+<div class='grid'>
+<div><h2>异动最多的指标 TOP</h2><svg viewBox='0 0 620 216' width='100%' role='img'><text x='0' y='18' font-size='12' fill='#444'>近30天合作笔记数</text><rect x='180' y='8' width='330' height='12' rx='3' fill='#BA7517'/><text x='520' y='18' font-size='12' fill='#222'>54</text><text x='0' y='44' font-size='12' fill='#444'>近90天合作笔记数</text><rect x='180' y='34' width='281' height='12' rx='3' fill='#BA7517'/><text x='471' y='44' font-size='12' fill='#222'>46</text><text x='0' y='70' font-size='12' fill='#444'>近30天曝光中位数</text><rect x='180' y='60' width='275' height='12' rx='3' fill='#BA7517'/><text x='465' y='70' font-size='12' fill='#222'>45</text><text x='0' y='96' font-size='12' fill='#444'>近30天阅读中位数</text><rect x='180' y='86' width='238' height='12' rx='3' fill='#BA7517'/><text x='428' y='96' font-size='12' fill='#222'>39</text><text x='0' y='122' font-size='12' fill='#444'>近90天曝光中位数</text><rect x='180' y='112' width='220' height='12' rx='3' fill='#BA7517'/><text x='410' y='122' font-size='12' fill='#222'>36</text><text x='0' y='148' font-size='12' fill='#444'>近30天互动中位数</text><rect x='180' y='138' width='171' height='12' rx='3' fill='#BA7517'/><text x='361' y='148' font-size='12' fill='#222'>28</text><text x='0' y='174' font-size='12' fill='#444'>近90天阅读中位数</text><rect x='180' y='164' width='158' height='12' rx='3' fill='#BA7517'/><text x='348' y='174' font-size='12' fill='#222'>26</text><text x='0' y='200' font-size='12' fill='#444'>近90天互动中位数</text><rect x='180' y='190' width='103' height='12' rx='3' fill='#BA7517'/><text x='293' y='200' font-size='12' fill='#222'>17</text></svg></div>
+<div><h2>标签覆盖达人 TOP</h2><svg viewBox='0 0 620 216' width='100%' role='img'><text x='0' y='18' font-size='12' fill='#444'>护肤</text><rect x='180' y='8' width='330' height='12' rx='3' fill='#7F77DD'/><text x='520' y='18' font-size='12' fill='#222'>104</text><text x='0' y='44' font-size='12' fill='#444'>面部保养</text><rect x='180' y='34' width='272' height='12' rx='3' fill='#7F77DD'/><text x='462' y='44' font-size='12' fill='#222'>86</text><text x='0' y='70' font-size='12' fill='#444'>护肤合集</text><rect x='180' y='60' width='266' height='12' rx='3' fill='#7F77DD'/><text x='456' y='70' font-size='12' fill='#222'>84</text><text x='0' y='96' font-size='12' fill='#444'>抗老</text><rect x='180' y='86' width='203' height='12' rx='3' fill='#7F77DD'/><text x='393' y='96' font-size='12' fill='#222'>64</text><text x='0' y='122' font-size='12' fill='#444'>隔离防晒</text><rect x='180' y='112' width='177' height='12' rx='3' fill='#7F77DD'/><text x='367' y='122' font-size='12' fill='#222'>56</text><text x='0' y='148' font-size='12' fill='#444'>眼部护理</text><rect x='180' y='138' width='155' height='12' rx='3' fill='#7F77DD'/><text x='345' y='148' font-size='12' fill='#222'>49</text><text x='0' y='174' font-size='12' fill='#444'>个人护理</text><rect x='180' y='164' width='139' height='12' rx='3' fill='#7F77DD'/><text x='329' y='174' font-size='12' fill='#222'>44</text><text x='0' y='200' font-size='12' fill='#444'>美白</text><rect x='180' y='190' width='133' height='12' rx='3' fill='#7F77DD'/><text x='323' y='200' font-size='12' fill='#222'>42</text></svg></div>
+</div>
+<h2>粉丝量 TOP 8 达人</h2>
+<table><tr><th>达人</th><th>粉丝数</th><th>图文报价</th><th>CPE(30d)</th><th>粉丝分层</th><th>性价比</th></tr>
+<tr><td>-19doublew</td><td>793,385</td><td>110,000</td><td>17.21</td><td>腰部</td><td>成本偏高</td></tr>
+<tr><td>一达芙Yi</td><td>773,729</td><td>90,000</td><td>9.21</td><td>腰部</td><td>成本偏高</td></tr>
+<tr><td>开心一点啦</td><td>405,407</td><td>50,000</td><td>0.82</td><td>腰部</td><td>高性价比</td></tr>
+<tr><td>蠢柚</td><td>364,533</td><td>40,000</td><td>14.10</td><td>腰部</td><td>成本偏高</td></tr>
+<tr><td>一颗枣枣</td><td>312,795</td><td>20,140</td><td>9.27</td><td>腰部</td><td>成本偏高</td></tr>
+<tr><td>Monibaby</td><td>311,641</td><td>25,000</td><td>6.01</td><td>腰部</td><td>中等</td></tr>
+<tr><td>婧威vivi</td><td>289,308</td><td>28,000</td><td>8.68</td><td>尾部</td><td>成本偏高</td></tr>
+<tr><td>叫我小q</td><td>189,339</td><td>8,000</td><td>7.21</td><td>尾部</td><td>成本偏高</td></tr>
+</table><h2>异动明细 TOP 10</h2>
+<table><tr><th>月份</th><th>达人</th><th>指标</th><th>本月</th><th>上月</th><th>环比%</th></tr>
+<tr><td>2026-10</td><td>r_992ee295</td><td>近30天曝光中位数</td><td>46,206</td><td>26,112</td><td>76.95</td></tr>
+<tr><td>2026-10</td><td>r_992ee295</td><td>近90天曝光中位数</td><td>49,025</td><td>36,420</td><td>34.61</td></tr>
+<tr><td>2026-10</td><td>r_992ee295</td><td>近30天阅读中位数</td><td>6,763</td><td>4,653</td><td>45.35</td></tr>
+<tr><td>2026-10</td><td>r_4fb04a1d</td><td>近30天曝光中位数</td><td>568,571</td><td>843,309</td><td>-32.58</td></tr>
+<tr><td>2026-10</td><td>r_09340a67</td><td>近30天曝光中位数</td><td>66,201</td><td>36,896</td><td>79.43</td></tr>
+<tr><td>2026-10</td><td>r_09340a67</td><td>近30天合作笔记数</td><td>12</td><td>2</td><td>500.00</td></tr>
+<tr><td>2026-10</td><td>r_09340a67</td><td>视频报价</td><td>4,000</td><td>3,000</td><td>33.33</td></tr>
+<tr><td>2026-10</td><td>r_56f9247c</td><td>近30天合作笔记数</td><td>4</td><td>9</td><td>-55.56</td></tr>
+<tr><td>2026-10</td><td>r_128bee14</td><td>近30天曝光中位数</td><td>34,162</td><td>75,001</td><td>-54.45</td></tr>
+<tr><td>2026-10</td><td>r_128bee14</td><td>近90天曝光中位数</td><td>48,527</td><td>77,574</td><td>-37.44</td></tr>
+</table></html>

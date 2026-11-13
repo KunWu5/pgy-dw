@@ -1,0 +1,327 @@
+{
+  "source": "spark/sql/*.hql + airflow/dags/task_graph.py",
+  "node_count": 24,
+  "edge_count": 28,
+  "nodes": [
+    {
+      "table": "pgy_dw.ads_blogger_value_wide",
+      "layer": "ADS",
+      "kind": "hive_table"
+    },
+    {
+      "table": "pgy_dw.ads_metric_alert",
+      "layer": "ADS",
+      "kind": "hive_table"
+    },
+    {
+      "table": "pgy_dw.ads_tag_profile",
+      "layer": "ADS",
+      "kind": "hive_table"
+    },
+    {
+      "table": "pgy_dw.dim_blogger",
+      "layer": "DIM",
+      "kind": "hive_table"
+    },
+    {
+      "table": "pgy_dw.dim_blogger_scd",
+      "layer": "DIM",
+      "kind": "hive_table"
+    },
+    {
+      "table": "pgy_dw.dim_metric",
+      "layer": "DIM",
+      "kind": "hive_table"
+    },
+    {
+      "table": "pgy_dw.dim_month",
+      "layer": "DIM",
+      "kind": "hive_table"
+    },
+    {
+      "table": "pgy_dw.dwd_blogger_metric_long",
+      "layer": "DWD",
+      "kind": "hive_table"
+    },
+    {
+      "table": "pgy_dw.dwd_blogger_monthly_snapshot",
+      "layer": "DWD",
+      "kind": "hive_table"
+    },
+    {
+      "table": "pgy_dw.dwd_blogger_tag_bridge",
+      "layer": "DWD",
+      "kind": "hive_table"
+    },
+    {
+      "table": "pgy_dw.dwd_crawl_run",
+      "layer": "DWD",
+      "kind": "hive_table"
+    },
+    {
+      "table": "pgy_dw.dwd_failed_record",
+      "layer": "DWD",
+      "kind": "hive_table"
+    },
+    {
+      "table": "pgy_dw.dws_blogger_profile",
+      "layer": "DWS",
+      "kind": "hive_table"
+    },
+    {
+      "table": "pgy_dw.dws_metric_monthly_change",
+      "layer": "DWS",
+      "kind": "hive_table"
+    },
+    {
+      "table": "pgy_dw.dws_platform_monthly",
+      "layer": "DWS",
+      "kind": "hive_table"
+    },
+    {
+      "table": "pgy_dw.dws_tag_monthly",
+      "layer": "DWS",
+      "kind": "hive_table"
+    },
+    {
+      "table": "pgy_dw.ods_blogger_list",
+      "layer": "ODS",
+      "kind": "hive_table"
+    },
+    {
+      "table": "pgy_dw.ods_crawl_run",
+      "layer": "ODS",
+      "kind": "hive_table"
+    },
+    {
+      "table": "pgy_dw.ods_mysql_snapshot",
+      "layer": "ODS",
+      "kind": "hive_table"
+    },
+    {
+      "table": "pgy_dw.ods_pgy_monthly_snapshot",
+      "layer": "ODS",
+      "kind": "hive_table"
+    },
+    {
+      "table": "v_blogger_list",
+      "layer": "STAGING",
+      "kind": "view"
+    },
+    {
+      "table": "v_crawl_run",
+      "layer": "STAGING",
+      "kind": "view"
+    },
+    {
+      "table": "v_mysql_snapshot",
+      "layer": "STAGING",
+      "kind": "view"
+    },
+    {
+      "table": "v_ods_snapshot",
+      "layer": "STAGING",
+      "kind": "view"
+    }
+  ],
+  "edges": [
+    {
+      "source": "pgy_dw.dwd_blogger_monthly_snapshot",
+      "target": "pgy_dw.ads_blogger_value_wide",
+      "stage": "ads",
+      "sql_file": "04_ads.hql"
+    },
+    {
+      "source": "pgy_dw.dws_metric_monthly_change",
+      "target": "pgy_dw.ads_blogger_value_wide",
+      "stage": "ads",
+      "sql_file": "04_ads.hql"
+    },
+    {
+      "source": "pgy_dw.dim_metric",
+      "target": "pgy_dw.ads_metric_alert",
+      "stage": "ads",
+      "sql_file": "04_ads.hql"
+    },
+    {
+      "source": "pgy_dw.dws_metric_monthly_change",
+      "target": "pgy_dw.ads_metric_alert",
+      "stage": "ads",
+      "sql_file": "04_ads.hql"
+    },
+    {
+      "source": "pgy_dw.ods_blogger_list",
+      "target": "pgy_dw.dim_blogger",
+      "stage": "dim_dwd",
+      "sql_file": "02_dim_dwd.hql"
+    },
+    {
+      "source": "pgy_dw.ods_pgy_monthly_snapshot",
+      "target": "pgy_dw.dim_blogger",
+      "stage": "dim_dwd",
+      "sql_file": "02_dim_dwd.hql"
+    },
+    {
+      "source": "pgy_dw.dwd_blogger_monthly_snapshot",
+      "target": "pgy_dw.dim_blogger_scd",
+      "stage": "dim_dwd",
+      "sql_file": "02c_post_load.hql"
+    },
+    {
+      "source": "pgy_dw.ods_pgy_monthly_snapshot",
+      "target": "pgy_dw.dim_month",
+      "stage": "dim_dwd",
+      "sql_file": "02_dim_dwd.hql"
+    },
+    {
+      "source": "pgy_dw.ods_pgy_monthly_snapshot",
+      "target": "pgy_dw.dwd_blogger_monthly_snapshot",
+      "stage": "dim_dwd",
+      "sql_file": "02b_insert_month.hql"
+    },
+    {
+      "source": "pgy_dw.dwd_blogger_monthly_snapshot",
+      "target": "pgy_dw.dwd_blogger_tag_bridge",
+      "stage": "dim_dwd",
+      "sql_file": "02c_post_load.hql"
+    },
+    {
+      "source": "pgy_dw.ods_pgy_monthly_snapshot",
+      "target": "pgy_dw.dwd_crawl_run",
+      "stage": "dim_dwd",
+      "sql_file": "02c_post_load.hql"
+    },
+    {
+      "source": "pgy_dw.ods_pgy_monthly_snapshot",
+      "target": "pgy_dw.dwd_failed_record",
+      "stage": "dim_dwd",
+      "sql_file": "02c_post_load.hql"
+    },
+    {
+      "source": "pgy_dw.dwd_blogger_monthly_snapshot",
+      "target": "pgy_dw.dwd_blogger_metric_long",
+      "stage": "dws",
+      "sql_file": "03_dws.hql"
+    },
+    {
+      "source": "pgy_dw.dwd_blogger_metric_long",
+      "target": "pgy_dw.dws_metric_monthly_change",
+      "stage": "dws",
+      "sql_file": "03_dws.hql"
+    },
+    {
+      "source": "pgy_dw.dwd_blogger_monthly_snapshot",
+      "target": "pgy_dw.dws_platform_monthly",
+      "stage": "dws",
+      "sql_file": "03_dws.hql"
+    },
+    {
+      "source": "pgy_dw.dwd_blogger_monthly_snapshot",
+      "target": "pgy_dw.dws_tag_monthly",
+      "stage": "dws",
+      "sql_file": "03_dws.hql"
+    },
+    {
+      "source": "pgy_dw.dwd_blogger_tag_bridge",
+      "target": "pgy_dw.dws_tag_monthly",
+      "stage": "dws",
+      "sql_file": "03_dws.hql"
+    },
+    {
+      "source": "v_blogger_list",
+      "target": "pgy_dw.ods_blogger_list",
+      "stage": "ods",
+      "sql_file": "01_ods.hql"
+    },
+    {
+      "source": "v_crawl_run",
+      "target": "pgy_dw.ods_crawl_run",
+      "stage": "ods",
+      "sql_file": "01_ods.hql"
+    },
+    {
+      "source": "v_mysql_snapshot",
+      "target": "pgy_dw.ods_mysql_snapshot",
+      "stage": "ods",
+      "sql_file": "01_ods.hql"
+    },
+    {
+      "source": "v_ods_snapshot",
+      "target": "pgy_dw.ods_pgy_monthly_snapshot",
+      "stage": "ods",
+      "sql_file": "01_ods.hql"
+    },
+    {
+      "source": "pgy_dw.dwd_blogger_monthly_snapshot",
+      "target": "pgy_dw.ads_tag_profile",
+      "stage": "profile",
+      "sql_file": "05_profile.hql"
+    },
+    {
+      "source": "pgy_dw.dwd_blogger_tag_bridge",
+      "target": "pgy_dw.ads_tag_profile",
+      "stage": "profile",
+      "sql_file": "05_profile.hql"
+    },
+    {
+      "source": "pgy_dw.dws_blogger_profile",
+      "target": "pgy_dw.ads_tag_profile",
+      "stage": "profile",
+      "sql_file": "05_profile.hql"
+    },
+    {
+      "source": "pgy_dw.ads_blogger_value_wide",
+      "target": "pgy_dw.dws_blogger_profile",
+      "stage": "profile",
+      "sql_file": "05_profile.hql"
+    },
+    {
+      "source": "pgy_dw.dim_blogger",
+      "target": "pgy_dw.dws_blogger_profile",
+      "stage": "profile",
+      "sql_file": "05_profile.hql"
+    },
+    {
+      "source": "pgy_dw.dwd_blogger_monthly_snapshot",
+      "target": "pgy_dw.dws_blogger_profile",
+      "stage": "profile",
+      "sql_file": "05_profile.hql"
+    },
+    {
+      "source": "pgy_dw.dwd_blogger_tag_bridge",
+      "target": "pgy_dw.dws_blogger_profile",
+      "stage": "profile",
+      "sql_file": "05_profile.hql"
+    }
+  ],
+  "task_graph": [
+    {
+      "task": "ods",
+      "depends_on": []
+    },
+    {
+      "task": "dim_dwd",
+      "depends_on": [
+        "ods"
+      ]
+    },
+    {
+      "task": "dws",
+      "depends_on": [
+        "dim_dwd"
+      ]
+    },
+    {
+      "task": "ads",
+      "depends_on": [
+        "dws"
+      ]
+    },
+    {
+      "task": "quality",
+      "depends_on": [
+        "ads"
+      ]
+    }
+  ]
+}

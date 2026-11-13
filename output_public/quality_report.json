@@ -1,0 +1,74 @@
+[
+  {
+    "check_name": "ODS 到 DWD 行数守恒",
+    "rule": "ODS 行数 = DWD 成功行数 + 失败明细行数",
+    "actual": 218.0,
+    "expected": "218",
+    "passed": 1,
+    "detail": "ODS=218, DWD成功=217, 失败=1"
+  },
+  {
+    "check_name": "DWD 主键唯一",
+    "rule": "(stat_month, red_id) 无重复",
+    "actual": 0.0,
+    "expected": "0",
+    "passed": 1,
+    "detail": ""
+  },
+  {
+    "check_name": "关键字段非空",
+    "rule": "red_id / stat_month 不为空",
+    "actual": 0.0,
+    "expected": "0",
+    "passed": 1,
+    "detail": ""
+  },
+  {
+    "check_name": "数值值域",
+    "rule": "粉丝数>0、报价/中位数指标>=0",
+    "actual": 0.0,
+    "expected": "0",
+    "passed": 1,
+    "detail": ""
+  },
+  {
+    "check_name": "11 项指标完整率",
+    "rule": "非空指标占比 >= 95%",
+    "actual": 100.0,
+    "expected": ">= 95",
+    "passed": 1,
+    "detail": "总计 2387 条指标记录，空值 0"
+  },
+  {
+    "check_name": "2026-08 采集成功率",
+    "rule": "月度采集成功率 >= 95%",
+    "actual": 100.0,
+    "expected": ">= 95",
+    "passed": 1,
+    "detail": "95/95"
+  },
+  {
+    "check_name": "2026-10 采集成功率",
+    "rule": "月度采集成功率 >= 95%",
+    "actual": 99.19,
+    "expected": ">= 95",
+    "passed": 1,
+    "detail": "122/123"
+  },
+  {
+    "check_name": "异常波动提醒",
+    "rule": "记录 >=30% 波动的指标数（信息项）",
+    "actual": 310.0,
+    "expected": "信息项",
+    "passed": 1,
+    "detail": "阈值 30%"
+  },
+  {
+    "check_name": "名单增删追踪",
+    "rule": "新增 / 流失博主记录数（信息项）",
+    "actual": 27.0,
+    "expected": "信息项",
+    "passed": 1,
+    "detail": ""
+  }
+]

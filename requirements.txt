@@ -1,0 +1,13 @@
+# 基础分层 + 质量校验（SQLite 版，只需这一个）
+openpyxl>=3.1
+
+# Spark 链路：分层 / 标签画像 / 132 万行压测 / 实时管道 / Iceberg
+# 需要 JDK 17 或 21，并设置 JAVA_HOME
+pyspark==4.0.1
+
+# 治理产物 / BI 看板 / Pandas 分析 / DuckDB OLAP
+pandas>=2.2
+numpy>=1.26
+duckdb>=1.0
+
+# 可选：Iceberg 需要额外下载 runtime jar，见 iceberg/iceberg_demo.py 顶部说明

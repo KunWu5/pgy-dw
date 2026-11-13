@@ -1,0 +1,10 @@
+﻿red_id,nickname,metric,value,mean,z_score
+r_81e82ece,达人061,cpe_30d,100.0,7.0126,8.8
+r_4fb04a1d,达人032,image_price,110000.0,5904.123,7.44
+r_90679195,达人066,engagement_rate_30d,0.1545,0.0189,6.84
+r_4fb04a1d,达人032,fans_count,793385.0,55570.2787,6.26
+r_a7e49838,达人080,fans_count,773729.0,55570.2787,6.1
+r_a7e49838,达人080,image_price,90000.0,5904.123,6.01
+r_5f31d231,达人043,image_price,50000.0,5904.123,3.15
+r_acec0e8a,达人085,engagement_rate_30d,0.0802,0.0189,3.09
+r_4ff58480,达人033,engagement_rate_30d,0.0789,0.0189,3.03
